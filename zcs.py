@@ -106,7 +106,7 @@ def parse_read_power(response: bytearray) -> tuple[int, int, int, int]:
     power_mw = int.from_bytes(response[4:7], 'big')
     power_factor = int.from_bytes(response[7:9], 'big')
     voltage_mv = int.from_bytes(response[9:12], 'big')
-    return (irms_ma, power_mw, power_factor, voltage_mv)
+    return (f'{irms_ma / 1000} amps', f'{power_mw / 1000} watts', power_factor, f'{voltage_mv / 1000} volts')
 
 class Schedule():
     """A representation of a schedule that can be used to turn a smartplug on
